@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Hotel Guest Assistant — The Grand Azure Resort',
-  description: 'AI-Powered Concierge & Room Availability Assistant for The Grand Azure Resort & Spa',
+  title: "Omago AI — AI Chatbot Dashboard & Digital Teammate",
+  description: 'AI chatbot dashboard and embeddable customer assistant widget.',
 };
 
 export default function RootLayout({
