@@ -1,8 +1,6 @@
 import { ChatApiResponse, Message, AvailabilityQuery, AvailabilityResultData } from '../types';
 
-const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL !== undefined
-  ? process.env.NEXT_PUBLIC_BACKEND_URL
-  : (process.env.NODE_ENV === 'production' ? '' : 'http://localhost:4000');
+const BACKEND_URL = process.env.NEXT_PUBLIC_BACKEND_URL || '';
 
 export async function sendChatMessage(
   message: string,
