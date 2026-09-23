@@ -120,18 +120,43 @@ sequenceDiagram
 
 ---
 
-## 3. Data Isolation & Hallucination Prevention
+## 3. Data Isolation & Hallucination Prevention (Retrieve-then-Generate RAG Pipeline)
 
-To prevent unauthorized speculation or incorrect answers:
-1. **Strict System Prompt Injection**: The complete contents of `backend/data/hotel-data.json` are formatted and injected directly into the LLM system prompt.
-2. **Explicit Grounding Guardrail**: The system prompt instructs the model:
-   - Only answer using factual data present in the provided knowledge base.
-   - For queries outside the knowledge base (e.g. weather, external booking, flights), refuse politely with the hotel front desk contact information.
-   - Never speculate on room availability without invoking the `checkAvailability` tool.
-3. **Deterministic Business Logic**:
-   - Room capacities are strictly enforced (`maxOccupancy >= adults`).
-   - Nightly totals are calculated arithmetically (`pricePerNight * nights`).
-   - Availability is governed by rule-based inventory, never by language model token generation.
+To prevent unauthorized speculation, hallucinations, or prompt context bloat as the knowledge base grows:
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Guest as Hotel Guest
+    participant API as Express API (/api/chat)
+    participant AI as AIService
+    participant RAG as KnowledgeIndexService
+    participant LLM as Groq LLM (Llama 3.3 70B)
+
+    Guest->>API: POST /api/chat { message: "What time is check-in?" }
+    API->>AI: processMessage(message, conversationId)
+    AI->>RAG: getRelevantChunks(userMessage, topK=4)
+    Note over RAG: Lexical + semantic cosine similarity search against precomputed chunk index
+    RAG-->>AI: Returns Top-K chunks: [{ sourceRef: "hotel.check_in_time", text: "..." }]
+    
+    alt Chunks Found (Similarity >= 0.15 threshold)
+        AI->>LLM: completions.create(systemPrompt: [Retrieved Chunks Only], userMessage)
+        Note over LLM: Grounded strictly on retrieved chunks; refuses unsupported facts
+        LLM-->>AI: Generated answer grounded in retrieved text
+        AI-->>API: Returns { reply, intent: 'faq', sources: ['hotel.check_in_time'], conversationId }
+    else Zero Chunks Above Threshold (< 0.15)
+        Note over AI: Hard Groundedness Gate: Skips LLM to prevent hallucination
+        AI-->>API: Returns { reply: "I do not have that information...", intent: 'fallback', sources: [] }
+    end
+    API-->>Guest: HTTP 200 JSON with answer and source references
+```
+
+### Key RAG Implementation Safeguards:
+1. **Granular Chunking**: Rather than dumping the entire JSON document into the prompt, `KnowledgeIndexService` segments `hotel-data.json` into isolated logical units (individual FAQ items, individual room specifications, amenities, and policy declarations) with traceable `sourceRef` identifiers.
+2. **Deterministic Top-K Retrieval**: Incoming guest queries are vectorized and matched against precomputed chunk embeddings using cosine similarity. Only the top-4 relevant chunks are passed to the prompt.
+3. **Hard Groundedness Gate (Similarity Threshold)**: If no knowledge base chunks exceed a cosine similarity score of `0.15` (e.g., out-of-scope questions about external weather, third-party flights, or unrelated topics), the system skips the LLM call entirely and returns an immediate safe fallback message with `sources: []`.
+4. **Source Attribution**: The API response includes a `sources` array listing the exact `sourceRef` entries (e.g. `hotel.check_in_time`, `amenities.pool`) used to answer the question, providing complete auditability.
+5. **Deterministic Inventory Separation**: Room capacities and nightly totals remain strictly arithmetical and rule-based (`availabilityService`), completely isolated from LLM token speculation.
 
 ---
 
@@ -151,3 +176,12 @@ To prevent unauthorized speculation or incorrect answers:
 | **Invalid Date Formats / Semantics** | Guest selects invalid checkout | The availability engine validates ISO format, check-out > check-in, and sensible guest counts, returning clear 400 validation messages. |
 | **Frontend Network Disconnection** | Request times out (15s) | Next.js API client intercepts `AbortError`, presents an inline retry button and top notification banner allowing the guest to re-send with 1 click. |
 | **Missing API Key in Development** | Developer boots without key | The backend automatically switches to a deterministic grounded mock mode, allowing full functionality, test passing, and UI preview without requiring credentials. |
+
+---
+
+## 6. Model Context Protocol (MCP) Interface
+
+The repository includes a standalone Model Context Protocol (MCP) server (`backend/src/mcp/server.ts`) running over the official `@modelcontextprotocol/sdk` stdio transport.
+
+> [!NOTE]
+> The MCP server serves as a **parallel interface** over the existing core backend services, not a replacement. External AI agents (such as Claude Desktop, Cursor, or autonomous agent frameworks) invoke the exact same deterministic `availabilityService`, `knowledgeIndexService`, and `hotelDataRepository` that the Express HTTP routes use. This establishes a **single source of truth** across both web REST clients and external MCP agents, guaranteeing identical availability calculations, capacity constraints, pricing logic, and knowledge retrieval thresholds regardless of the calling channel.

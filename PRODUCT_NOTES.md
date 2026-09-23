@@ -84,9 +84,10 @@ Instead of printing raw text lists like `"Deluxe King is $220/night, Double Quee
 
 ## 6. How Do You Prevent Hallucinations and Unsupported Answers?
 
-1. **Knowledge Base Grounding**:
-   - The authoritative `hotel-data.json` is directly injected into the system prompt.
-   - The system prompt strictly mandates: *"ONLY answer based strictly on the factual information provided in the KNOWLEDGE BASE. If the question asks for information not present in the Knowledge Base, DO NOT guess, speculate, or invent facts. State that you do not have that information and provide the front desk contact info."*
+1. **Retrieve-Then-Generate Grounding (RAG Pipeline)**:
+   - Instead of stuffing the entire raw knowledge base into the prompt, the system utilizes a semantic vector retrieval index (`knowledgeIndexService`). The model only sees top-k (k=4) relevant chunks rather than the entire knowledge base, significantly reducing attention drift over irrelevant text and keeping context focused.
+   - **Similarity Threshold Gate (0.15)**: If semantic cosine similarity for all indexed chunks falls below 0.15, the system determines the query has no relevant ground truth and bypasses the LLM call entirely, returning an immediate, deterministic out-of-scope fallback response.
+   - **Self-RAG Verification Pass**: For complex multi-hop or edge-case queries, the pipeline can execute a secondary entailment check that scores whether the candidate answer is strictly supported by the retrieved source chunks before emitting the final response to the user.
 2. **Tool-Gated Availability**:
    - The model is explicitly forbidden from generating availability or pricing claims in raw prose. It must invoke `checkAvailability`.
 3. **Structured Missing Field Detection**:
@@ -144,8 +145,10 @@ While this implementation fulfills all requirements for the take-home assignment
    - Stream tokens via Server-Sent Events for instant typing perception on longer policy answers.
 2. **Persistent Storage (PostgreSQL + Redis)**:
    - Replace in-memory conversation storage with Redis session caching (TTL: 24h) and PostgreSQL for audit logs and analytics.
-3. **RAG Vector Search for Large Resort Portfolios**:
-   - For resorts with hundreds of pages of menus, spa treatments, conference room floorplans, and golf course guides, replace full-KB injection with a vector database (e.g. pgvector or Pinecone) performing hybrid semantic retrieval.
+3. **State Graph Orchestration (LangGraph)**:
+   - For production, we would model this multi-step pipeline (classify intent → retrieve chunks → ground check → generate or fallback) as a LangGraph state graph to make each transition explicit, observable, and retryable with checkpointed state.
+4. **RAG Vector Search for Large Resort Portfolios**:
+   - For resorts with hundreds of pages of menus, spa treatments, conference room floorplans, and golf course guides, replace in-memory vector index with a distributed vector database (e.g. pgvector or Pinecone) performing hybrid semantic retrieval with BM25 reranking.
 
 ### Enterprise & Security Guardrails
 4. **Rate Limiting & Abuse Prevention**:

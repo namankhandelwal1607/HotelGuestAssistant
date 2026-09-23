@@ -2,6 +2,7 @@ import Groq from 'groq-sdk';
 import { hotelRepo } from '../data/hotelDataRepository';
 import { availabilityService } from './availabilityService';
 import { conversationService } from './conversationService';
+import { knowledgeIndexService, KnowledgeChunk } from './knowledgeIndexService';
 import {
   ChatIntent,
   ChatMessage,
@@ -87,14 +88,15 @@ export class AIService {
       return {
         reply: 'We are temporarily experiencing an issue with our virtual concierge service. Please contact our front desk directly at +1 (831) 555-0199 or email concierge@grandazureresort.com for immediate assistance.',
         intent: 'fallback',
-        conversationId: activeConvId
+        conversationId: activeConvId,
+        sources: []
       };
     }
 
     // Route to live Groq API if available and not forced to mock
     if (this.groqClient && !this.forceMockForTesting && process.env.NODE_ENV !== 'test') {
       try {
-        const response = await this.callGroqWithTools(fullHistory, activeConvId);
+        const response = await this.callGroqWithTools(userMessage, fullHistory, activeConvId);
         conversationService.addMessage(activeConvId, {
           role: 'assistant',
           content: response.reply
@@ -106,7 +108,8 @@ export class AIService {
         const fallbackResponse: ChatResponse = {
           reply: 'I apologize for the delay. I am having a brief connection issue with our service. Please feel free to ask your question again, or contact our front desk at +1 (831) 555-0199 for immediate help.',
           intent: 'fallback',
-          conversationId: activeConvId
+          conversationId: activeConvId,
+          sources: []
         };
         conversationService.addMessage(activeConvId, {
           role: 'assistant',
@@ -126,15 +129,45 @@ export class AIService {
   }
 
   /**
-   * Calls Groq chat completions with native tool calling
+   * Calls Groq chat completions with RAG-retrieved chunks and native tool calling
    */
-  private async callGroqWithTools(history: ChatMessage[], conversationId: string): Promise<ChatResponse> {
+  private async callGroqWithTools(
+    userMessage: string,
+    history: ChatMessage[],
+    conversationId: string
+  ): Promise<ChatResponse> {
     if (!this.groqClient) {
       throw new Error('Groq client is not initialized');
     }
 
     const hotelData = hotelRepo.getAll();
-    const systemPrompt = this.buildSystemPrompt(hotelData);
+    const retrievedChunks = knowledgeIndexService.getRelevantChunks(userMessage, 4);
+    const sources = retrievedChunks.map((c) => c.sourceRef);
+
+    // If retrieval returns zero chunks above similarity threshold and query is not availability-focused,
+    // skip LLM call entirely and return fallback response as a hard groundedness gate.
+    const lowerMsg = userMessage.toLowerCase();
+    const isAvailabilityIntent =
+      lowerMsg.includes('room') ||
+      lowerMsg.includes('avail') ||
+      lowerMsg.includes('book') ||
+      lowerMsg.includes('stay') ||
+      lowerMsg.includes('night') ||
+      /\d{4}-\d{2}-\d{2}/.test(lowerMsg);
+
+    if (retrievedChunks.length === 0 && !isAvailabilityIntent) {
+      Logger.info(`[RAG Retrieval] Zero chunks above similarity threshold for: "${userMessage}". Skipping LLM.`);
+      return {
+        reply:
+          hotelData.qa_responses?.['default'] ||
+          "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk at +1 (831) 555-0199.",
+        intent: 'fallback',
+        conversationId,
+        sources: []
+      };
+    }
+
+    const systemPrompt = this.buildSystemPrompt(hotelData.hotel.name, retrievedChunks);
 
     const messages = [
       { role: 'system' as const, content: systemPrompt },
@@ -277,28 +310,47 @@ export class AIService {
     return {
       reply,
       intent: isFallback ? 'fallback' : 'faq',
-      conversationId
+      conversationId,
+      sources: isFallback ? [] : sources
     };
   }
 
   /**
    * Deterministic grounded processor:
-   * Provides predictable, fast, 100% testable responses strictly from hotel-data.json.
+   * Provides predictable, fast, 100% testable responses strictly from hotel-data.json with RAG retrieval.
    */
   public processDeterministically(
     message: string,
     history: ChatMessage[],
     conversationId: string
   ): ChatResponse {
+    const response = this.computeDeterministicResponse(message, history, conversationId);
+    if (response.intent === 'faq' && !response.sources) {
+      const retrievedChunks = knowledgeIndexService.getRelevantChunks(message, 4);
+      response.sources = retrievedChunks.map((c) => c.sourceRef);
+    } else if (response.intent === 'fallback' && !response.sources) {
+      response.sources = [];
+    }
+    return response;
+  }
+
+  private computeDeterministicResponse(
+    message: string,
+    history: ChatMessage[],
+    conversationId: string
+  ): ChatResponse {
     const lower = message.toLowerCase().trim();
     const hotelData = hotelRepo.getAll();
+    const retrievedChunks = knowledgeIndexService.getRelevantChunks(message, 4);
+    const sources = retrievedChunks.map((c) => c.sourceRef);
 
     // 0. Greetings Check
     if (lower === 'hello' || lower === 'hi' || lower === 'hey' || lower.startsWith('hello ') || lower.startsWith('hi ') || lower.startsWith('hey ')) {
       return {
         reply: hotelData.qa_responses?.['hello'] || "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",
         intent: 'faq',
-        conversationId
+        conversationId,
+        sources
       };
     }
 
@@ -374,6 +426,19 @@ export class AIService {
           }
         },
         conversationId
+      };
+    }
+
+    // Zero-chunks Groundedness Gate: If no chunks met similarity threshold and query is not availability-focused,
+    // immediately return fallback response rather than guessing.
+    if (retrievedChunks.length === 0 && !hasAvailabilityKeywords && dateMatches.length === 0) {
+      return {
+        reply:
+          hotelData.qa_responses?.['default'] ||
+          "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk or call our concierge desk directly at ext. 0.",
+        intent: 'fallback',
+        conversationId,
+        sources: []
       };
     }
 
@@ -590,22 +655,27 @@ export class AIService {
     };
   }
 
-  private buildSystemPrompt(hotelData: any): string {
-    return `You are the AI Hotel Guest Assistant for "${hotelData.hotel.name}".
+  private buildSystemPrompt(hotelName: string, chunks: KnowledgeChunk[]): string {
+    const contextText =
+      chunks.length > 0
+        ? chunks.map((c, i) => `[Source ${i + 1} (${c.category}): ${c.sourceRef}]\n${c.text}`).join('\n\n')
+        : 'No directly relevant knowledge base entries were found for this query.';
+
+    return `You are the AI Hotel Guest Assistant for "${hotelName}".
 Your responsibility is to assist prospective and current guests with property details, amenities, room types, policies, and availability.
 
-HOTEL KNOWLEDGE BASE:
-${JSON.stringify(hotelData, null, 2)}
+RETRIEVED KNOWLEDGE BASE CONTEXT (Top-${chunks.length} Chunks):
+${contextText}
 
 STRICT OPERATIONAL RULES:
-1. ONLY answer questions using factual information found directly in the HOTEL KNOWLEDGE BASE above.
-2. OUT-OF-SCOPE QUESTIONS: If the guest asks about anything not in the knowledge base (such as local weather, outside restaurants not owned by the hotel, flight booking, external events, or private credentials), DO NOT guess or hallucinate. Politely state that you do not have that information in your directory and offer the front desk contact info (+1 (831) 555-0199 or concierge@grandazureresort.com).
+1. ONLY answer questions using factual information found directly in the RETRIEVED KNOWLEDGE BASE CONTEXT above.
+2. OUT-OF-SCOPE QUESTIONS: If the guest asks about anything not in the retrieved context (such as local weather, outside restaurants not listed, flight booking, external events, or private credentials), DO NOT guess or hallucinate. Politely state that you do not have that information in your directory and offer the front desk contact info (+1 (831) 555-0199 or concierge@grandazureresort.com).
 3. ROOM AVAILABILITY:
    - You must NEVER invent or speculate on room availability or inventory yourself.
    - If the user provides checkIn (YYYY-MM-DD), checkOut (YYYY-MM-DD), and the number of adults, invoke the tool 'checkAvailability'.
    - If the user asks about availability or booking but is missing any required information (dates or guest count), invoke the tool 'requestMissingAvailabilityFields' specifying which fields are missing.
 4. ROOM SUITABILITY:
-   - When asked which room fits certain parties (e.g. 3 guests), reference the maxOccupancy and bed configurations accurately from the knowledge base.
+   - When asked which room fits certain parties (e.g. 3 guests), reference the maxOccupancy and bed configurations accurately from the retrieved context.
 5. Maintain a welcoming, polite, and professional luxury concierge tone at all times.`;
   }
 }

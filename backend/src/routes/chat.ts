@@ -44,7 +44,8 @@ router.post('/chat', async (req: Request, res: Response, next: NextFunction) => 
       intent: result.intent,
       data: result.data,
       conversationId: result.conversationId,
-      missingFields: result.missingFields
+      missingFields: result.missingFields,
+      sources: result.sources || []
     });
   } catch (error: any) {
     Logger.error('Error handling chat request', error);

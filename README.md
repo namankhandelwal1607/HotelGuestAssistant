@@ -174,19 +174,78 @@ Or directly inside the backend folder:
 cd backend && npm test
 ```
 
-#### Test Suite Coverage (15 passing tests):
-1. `GET /api/health` — Service metadata and health status.
-2. `Scenario 1` — FAQ policy question (check-in & check-out times).
-3. `Scenario 2` — Amenity question (swimming pool details).
-4. `Scenario 3` — Room suitability recommendation (room for 3 guests).
-5. `Scenario 4` — Availability request with all fields present (triggers tool & returns structured room cards).
-6. `Scenario 5` — Availability request with missing fields (requests guest count without hallucinating).
-7. `Scenario 6` — Ambiguous question ("Is it good for kids?") -> grounded response.
-8. `Scenario 7` — Out-of-scope / unanswerable question ("Weather in Paris") -> graceful fallback refusal.
-9. `Scenario 8` — Follow-up pronoun reference ("And what about breakfast?") -> context preserved.
-10. `Scenario 9` — Simulated upstream LLM failure -> graceful fallback without server crash.
-11. `Scenario 10` — End-to-end multi-turn conversation flow across 3 consecutive turns.
-12. `POST /api/availability` — Direct endpoint happy path, date validation, and invalid capacity checks.
+#### Test Suite Coverage (29 passing tests across 3 suites):
+- **`tests/chat.test.ts` (15 tests)**:
+  1. `GET /api/health` — Service metadata and health status.
+  2. `Scenario 1` — FAQ policy question (check-in & check-out times, RAG source attribution).
+  3. `Scenario 2` — Amenity question (swimming pool details, RAG source attribution).
+  4. `Scenario 3` — Room suitability recommendation (room for 3 guests).
+  5. `Scenario 4` — Availability request with all fields present (triggers tool & returns structured room cards).
+  6. `Scenario 5` — Availability request with missing fields (requests guest count without hallucinating).
+  7. `Scenario 6` — Ambiguous question ("Is it good for kids?") -> grounded response.
+  8. `Scenario 7` — Out-of-scope / unanswerable question ("Weather in Paris") -> hard similarity threshold gate & graceful fallback refusal.
+  9. `Scenario 8` — Follow-up pronoun reference ("And what about breakfast?") -> context preserved with source attribution.
+  10. `Scenario 9` — Simulated upstream LLM failure -> graceful fallback without server crash.
+  11. `Scenario 10` — End-to-end multi-turn conversation flow across 3 consecutive turns.
+  12. `POST /api/availability` — Direct endpoint happy path, date validation, and invalid capacity checks.
+- **`tests/knowledgeIndex.test.ts` (5 tests)**:
+  13. Unit chunk generation across policies, amenities, rooms, and FAQs.
+  14. Semantic retrieval of check-in/out policy by query intent.
+  15. Semantic retrieval of pool amenity chunk.
+  16. Hard similarity threshold check (out-of-scope query yields 0 chunks).
+  17. Top-K limit enforcement.
+- **`tests/mcpServer.test.ts` (9 tests)**:
+  18. Schema definition validation for all 3 hotel MCP tools.
+  19. `check_availability` with valid date and guest parameters.
+  20. `check_availability` date range validation error handling.
+  21. `check_availability` guest count validation error handling.
+  22. `search_hotel_knowledge` known query retrieval.
+  23. `search_hotel_knowledge` out-of-scope empty result handling.
+  24. `search_hotel_knowledge` empty input validation.
+  25. `get_room_details` valid room ID retrieval.
+  26. `get_room_details` graceful error on unknown room ID.
+
+---
+
+## Optional: MCP Server
+
+The project includes a standalone **Model Context Protocol (MCP)** server built with `@modelcontextprotocol/sdk`. It exposes the hotel's core tools via the open MCP standard over `stdio` transport, allowing any MCP-compatible agent or client (such as **Claude Desktop**, **Cursor**, or autonomous agent frameworks) to query hotel knowledge and check real-time availability without going through the web UI.
+
+### Running the MCP Server Standalone
+You can launch the MCP server directly from the `backend/` directory:
+```bash
+cd backend
+npm run mcp
+```
+*(Runs independently on `stdio` without needing the Express HTTP server running).*
+
+### Claude Desktop & Cursor Configuration
+Add the following snippet to your Claude Desktop configuration (`claude_desktop_config.json`) or Cursor MCP settings:
+
+```json
+{
+  "mcpServers": {
+    "hotel-assistant": {
+      "command": "ts-node",
+      "args": ["src/mcp/server.ts"],
+      "cwd": "/path/to/backend"
+    }
+  }
+}
+```
+*(Replace `/path/to/backend` with the absolute path to your local `backend` directory).*
+
+### Exposed MCP Tools
+
+1. **`check_availability`**:
+   - **Description**: Deterministically checks real-time room availability, capacity limits, and pricing for a date range and guest count. Returns nightly rates, total stay cost, and availability status per room type.
+   - **Parameters**: `checkIn` (YYYY-MM-DD), `checkOut` (YYYY-MM-DD), `adults` (positive integer).
+2. **`search_hotel_knowledge`**:
+   - **Description**: Semantically searches hotel policies, amenities, FAQs, and room details using the in-process TF-IDF vector index. Returns grounded content chunks with source references.
+   - **Parameters**: `query` (search string), `topK` (optional, default: 4).
+3. **`get_room_details`**:
+   - **Description**: Retrieves complete specifications for a specific room type ID (`deluxe_king`, `deluxe_double_queen`, `executive_suite`), including bed configuration, square footage, occupancy limits, base rate, and included amenities.
+   - **Parameters**: `roomTypeId` (string).
 
 ---
 

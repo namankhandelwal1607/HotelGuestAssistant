@@ -7,6 +7,8 @@ export interface HotelInfo {
   check_out_time: string;
   cancellation_policy: string;
   breakfast_policy: string;
+  meal_policy?: string;
+  concierge_extension?: string;
   currency: string;
 }
 
@@ -93,4 +95,5 @@ export interface ChatResponse {
   data?: AvailabilityResultData | Record<string, unknown>;
   conversationId: string;
   missingFields?: AvailabilityField[];
+  sources?: string[];
 }

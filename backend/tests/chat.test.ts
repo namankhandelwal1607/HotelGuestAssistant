@@ -32,6 +32,9 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       expect(res.body.reply).toMatch(/3:00 PM/i);
       expect(res.body.reply).toMatch(/11:00 AM/i);
       expect(res.body.conversationId).toBeDefined();
+      expect(Array.isArray(res.body.sources)).toBe(true);
+      expect(res.body.sources.length).toBeGreaterThan(0);
+      expect(res.body.sources).toContain('hotel.check_in_time');
     });
   });
 
@@ -46,6 +49,9 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       expect(res.body.intent).toBe('faq');
       expect(res.body.reply).toMatch(/rooftop infinity pool/i);
       expect(res.body.reply).toMatch(/heated/i);
+      expect(Array.isArray(res.body.sources)).toBe(true);
+      expect(res.body.sources.length).toBeGreaterThan(0);
+      expect(res.body.sources).toContain('amenities.pool');
     });
   });
 
@@ -59,6 +65,8 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       expect(res.status).toBe(200);
       expect(res.body.intent).toBe('faq');
       expect(res.body.reply).toMatch(/Executive Harbor Suite|Deluxe Double Queen/i);
+      expect(Array.isArray(res.body.sources)).toBe(true);
+      expect(res.body.sources.length).toBeGreaterThan(0);
     });
   });
 
@@ -139,6 +147,7 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       expect(res.status).toBe(200);
       expect(res.body.intent).toBe('fallback');
       expect(res.body.reply).toMatch(/do not have that information|contact our front desk/i);
+      expect(res.body.sources).toEqual([]);
     });
   });
 
@@ -156,6 +165,8 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
         });
       expect(res1.status).toBe(200);
       expect(res1.body.reply).toMatch(/3:00 PM/i);
+      expect(Array.isArray(res1.body.sources)).toBe(true);
+      expect(res1.body.sources.length).toBeGreaterThan(0);
 
       // Turn 2 (pronoun / contextual follow-up)
       const res2 = await request(app)
@@ -168,6 +179,8 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       expect(res2.status).toBe(200);
       expect(res2.body.intent).toBe('faq');
       expect(res2.body.reply).toMatch(/breakfast|7:00 AM|Azure Bay/i);
+      expect(Array.isArray(res2.body.sources)).toBe(true);
+      expect(res2.body.sources.length).toBeGreaterThan(0);
     });
   });
 

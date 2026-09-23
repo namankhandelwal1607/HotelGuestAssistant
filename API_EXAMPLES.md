@@ -144,7 +144,11 @@ curl -X POST http://localhost:4000/api/chat \
 {
   "reply": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM. Early check-in or late check-out may be arranged based on availability upon request at the front desk.",
   "intent": "faq",
-  "conversationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  "conversationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sources": [
+    "hotel.check_in_time",
+    "faqs[0]"
+  ]
 }
 ```
 
@@ -162,7 +166,11 @@ curl -X POST http://localhost:4000/api/chat \
 {
   "reply": "Yes, we feature a heated rooftop infinity pool offering panoramic ocean views. The pool is open daily from 6:00 AM to 10:00 PM with complimentary cabanas and towel service.",
   "intent": "faq",
-  "conversationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
+  "conversationId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "sources": [
+    "amenities.pool",
+    "faqs[7]"
+  ]
 }
 ```
 
