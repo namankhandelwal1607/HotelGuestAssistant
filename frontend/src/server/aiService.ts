@@ -74,7 +74,7 @@ export class AIService {
     if (this.simulateFailureForTesting) {
       Logger.warn('Simulating upstream AI API failure as requested by test configuration');
       return {
-        reply: 'We are temporarily experiencing an issue with our virtual concierge service. Please contact our front desk directly at +1 (831) 555-0199 or email concierge@grandazureresort.com for immediate assistance.',
+        reply: 'We are temporarily experiencing an issue with our virtual concierge service. Please contact our front desk directly at +91 1234567890 or email concierge@grandazureresort.com for immediate assistance.',
         intent: 'fallback',
         conversationId: activeConvId
       };
@@ -93,7 +93,7 @@ export class AIService {
         Logger.error('Error during Groq API call, gracefully falling back', error);
         // Fallback gracefully without crashing
         const fallbackResponse: ChatResponse = {
-          reply: 'I apologize for the delay. I am having a brief connection issue with our service. Please feel free to ask your question again, or contact our front desk at +1 (831) 555-0199 for immediate help.',
+          reply: 'I apologize for the delay. I am having a brief connection issue with our service. Please feel free to ask your question again, or contact our front desk at +91 1234567890 for immediate help.',
           intent: 'fallback',
           conversationId: activeConvId
         };
@@ -226,7 +226,7 @@ export class AIService {
           const replyText =
             availableRooms.length > 0
               ? `I have checked our inventory for ${checkIn} to ${checkOut} (${availData.nights} night${availData.nights > 1 ? 's' : ''}) for ${adults} guest${adults > 1 ? 's' : ''}. We have ${availableRooms.length} room type${availableRooms.length > 1 ? 's' : ''} available for your stay. You can view the details and rates below:`
-              : `I checked our inventory for ${checkIn} to ${checkOut} for ${adults} guest${adults > 1 ? 's' : ''}, but unfortunately no rooms are available for those exact dates or party size. Please consider alternate dates or contact our front desk at +1 (831) 555-0199 for customized assistance.`;
+              : `I checked our inventory for ${checkIn} to ${checkOut} for ${adults} guest${adults > 1 ? 's' : ''}, but unfortunately no rooms are available for those exact dates or party size. Please consider alternate dates or contact our front desk at +91 1234567890 for customized assistance.`;
 
           return {
             reply: replyText,
@@ -390,9 +390,9 @@ export class AIService {
         };
       }
       if (lower.includes('parking') || lower.includes('car')) {
-        const parking = hotelData.amenities.find((a) => a.id === 'parking');
+        const parking = hotelData.amenities.find((a: any) => a.id === 'parking');
         return {
-          reply: parking ? parking.description : 'Valet parking is available for $35 per overnight stay with complimentary EV charging.',
+          reply: parking ? parking.description : 'Valet parking is available for ₹1,500 per overnight stay with complimentary EV charging.',
           intent: 'faq',
           conversationId
         };
@@ -412,7 +412,7 @@ export class AIService {
     // Spa / Spa appointments
     if (lower.includes('spa') || lower.includes('hammam') || lower.includes('massage') || lower.includes('facial')) {
       return {
-        reply: hotelData.qa_responses?.['spa'] || "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
+        reply: hotelData.qa_responses?.['spa'] || "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, ₹22,000), deep tissue massage (60 min, ₹15,500), and our bespoke facial with locally sourced botanicals (75 min, ₹19,000). Shall I check availability for you?",
         intent: 'faq',
         conversationId
       };
@@ -421,16 +421,16 @@ export class AIService {
     // Local dining / Restaurants
     if ((lower.includes('dining') || lower.includes('restaurant') || lower.includes('maison bleu') || lower.includes('café de flore') || lower.includes('local dining')) && !lower.includes('room service')) {
       return {
-        reply: hotelData.qa_responses?.['dining'] || "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+        reply: hotelData.qa_responses?.['dining'] || "We recommend 1135 AD at Amer Fort — stunning royal Rajasthani dining. For something more relaxed, Suvarna Mahal is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
         intent: 'faq',
         conversationId
       };
     }
 
     // Airport / Airport transfers / Chauffeur
-    if (lower.includes('airport') || lower.includes('transfer') || lower.includes('chauffeur') || lower.includes('charles de gaulle') || lower.includes('orly')) {
+    if (lower.includes('airport') || lower.includes('transfer') || lower.includes('chauffeur') || lower.includes('charles de gaulle') || lower.includes('orly') || lower.includes('jai')) {
       return {
-        reply: hotelData.qa_responses?.['airport'] || "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
+        reply: hotelData.qa_responses?.['airport'] || "We partner with Prestige Chauffeur for all transfers. A private sedan to Jaipur International Airport (JAI) is ₹3,500 (30–45 min). I can arrange pick-up for any time — please share your departure details.",
         intent: 'faq',
         conversationId
       };
@@ -453,13 +453,13 @@ export class AIService {
         ((lower.includes('check out') || lower.includes('check-out') || lower.includes('checkout')) && !lower.includes('check in') && !lower.includes('check-in'))
       ) {
         return {
-          reply: hotelData.qa_responses?.['checkout'] || "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
+          reply: hotelData.qa_responses?.['checkout'] || "Standard check-out is at noon. Late check-out until 4 PM is available for ₹7,500, subject to availability — I can request that for your room right now if you'd like.",
           intent: 'faq',
           conversationId
         };
       }
       return {
-        reply: "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM is available for $95, subject to availability).",
+        reply: "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM is available for ₹7,500, subject to availability).",
         intent: 'faq',
         conversationId
       };
@@ -544,9 +544,9 @@ export class AIService {
 
     // Parking & EV
     if (lower.includes('parking') || lower.includes('valet') || lower.includes('ev charging')) {
-      const parking = hotelData.amenities.find((a) => a.id === 'parking');
+      const parking = hotelData.amenities.find((a: any) => a.id === 'parking');
       return {
-        reply: parking ? parking.description : 'Valet parking is available for $35 per overnight stay with complimentary EV charging.',
+        reply: parking ? parking.description : 'Valet parking is available for ₹1,500 per overnight stay with complimentary EV charging.',
         intent: 'faq',
         conversationId
       };
@@ -554,9 +554,9 @@ export class AIService {
 
     // Pets / Dogs
     if (lower.includes('pet') || lower.includes('dog') || lower.includes('cat') || lower.includes('animal')) {
-      const petFaq = hotelData.faqs.find((f) => f.question.toLowerCase().includes('pet'));
+      const petFaq = hotelData.faqs.find((f: any) => f.question.toLowerCase().includes('pet'));
       return {
-        reply: petFaq ? petFaq.answer : 'We welcome up to two dogs per room under 25 lbs each with a $75 cleaning fee per stay. Service animals are free of charge.',
+        reply: petFaq ? petFaq.answer : 'We welcome up to two dogs per room under 25 lbs each with a ₹3,500 cleaning fee per stay. Service animals are free of charge.',
         intent: 'faq',
         conversationId
       };
@@ -565,7 +565,7 @@ export class AIService {
     // Ambiguous questions (e.g., "Is it good for kids?")
     if (lower.includes('kid') || lower.includes('children') || lower.includes('family')) {
       return {
-        reply: 'The Grand Azure Resort welcomes families! We offer multi-room Two-Bedroom Family Villas with kitchenettes, a heated rooftop pool open until 10:00 PM, and child breakfast rates ($15 under age 12). Please let us know if you need cribs or high chairs, or if you have specific family amenities in mind.',
+        reply: 'The Grand Azure Resort welcomes families! We offer multi-room Two-Bedroom Family Villas with kitchenettes, a heated rooftop pool open until 10:00 PM, and child breakfast rates (₹1,200 under age 12). Please let us know if you need cribs or high chairs, or if you have specific family amenities in mind.',
         intent: 'faq',
         conversationId
       };
@@ -573,7 +573,7 @@ export class AIService {
 
     // Unanswerable / Out of scope questions (weather, flights, external password, outside attractions)
     return {
-      reply: hotelData.qa_responses?.['default'] || "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk or call our concierge desk directly at ext. 0.",
+      reply: hotelData.qa_responses?.['default'] || "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk at +91 1234567890 or call our concierge desk directly at ext. 0.",
       intent: 'fallback',
       conversationId
     };
@@ -588,7 +588,7 @@ ${JSON.stringify(hotelData, null, 2)}
 
 STRICT OPERATIONAL RULES:
 1. ONLY answer questions using factual information found directly in the HOTEL KNOWLEDGE BASE above.
-2. OUT-OF-SCOPE QUESTIONS: If the guest asks about anything not in the knowledge base (such as local weather, outside restaurants not owned by the hotel, flight booking, external events, or private credentials), DO NOT guess or hallucinate. Politely state that you do not have that information in your directory and offer the front desk contact info (+1 (831) 555-0199 or concierge@grandazureresort.com).
+2. OUT-OF-SCOPE QUESTIONS: If the guest asks about anything not in the knowledge base (such as local weather, outside restaurants not owned by the hotel, flight booking, external events, or private credentials), DO NOT guess or hallucinate. Politely state that you do not have that information in your directory and offer the front desk contact info (+91 1234567890 or concierge@grandazureresort.com).
 3. ROOM AVAILABILITY:
    - You must NEVER invent or speculate on room availability or inventory yourself.
    - If the user provides checkIn (YYYY-MM-DD), checkOut (YYYY-MM-DD), and the number of adults, invoke the tool 'checkAvailability'.

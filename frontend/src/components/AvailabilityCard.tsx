@@ -54,12 +54,12 @@ export const AvailabilityCard: React.FC<AvailabilityCardProps> = ({ room }) => {
         <div className="flex sm:flex-col items-center sm:items-end justify-between border-t sm:border-t-0 pt-3 sm:pt-0 border-slate-100 min-w-[130px]">
           <div className="text-left sm:text-right">
             <div className="text-lg font-bold text-slate-900">
-              ${room.pricePerNight}
+              ₹{room.pricePerNight.toLocaleString('en-IN')}
               <span className="text-xs font-normal text-slate-500"> / night</span>
             </div>
             {room.nights > 1 && (
               <div className="text-xs text-slate-500">
-                ${room.totalPrice} total ({room.nights} nights)
+                ₹{room.totalPrice.toLocaleString('en-IN')} total ({room.nights} nights)
               </div>
             )}
           </div>

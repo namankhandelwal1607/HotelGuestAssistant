@@ -43,7 +43,7 @@ export const HotelNavbar: React.FC<HotelNavbarProps> = ({ onCheckAvailabilityCli
               Azure Grand Hotel
             </span>
             <span className="text-[10px] tracking-widest uppercase font-medium text-amber-700/90 mt-0.5">
-              Resort &amp; Spa · Monterey Bay
+              Resort &amp; Spa · Jaipur, Rajasthan
             </span>
           </div>
         </a>
@@ -83,11 +83,11 @@ export const HotelNavbar: React.FC<HotelNavbarProps> = ({ onCheckAvailabilityCli
         {/* Right Side CTA & Phone */}
         <div className="hidden sm:flex items-center gap-4">
           <a
-            href="tel:+18315550199"
+            href="tel:+911234567890"
             className="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 hover:text-slate-900 font-medium py-2 px-2.5 rounded-md hover:bg-slate-100 transition-colors"
           >
             <Phone className="w-3.5 h-3.5 text-amber-600" />
-            <span>(831) 555-0199</span>
+            <span>+91 1234567890</span>
           </a>
 
           <button
@@ -166,10 +166,10 @@ export const HotelNavbar: React.FC<HotelNavbarProps> = ({ onCheckAvailabilityCli
               <span>Check Availability</span>
             </button>
             <a
-              href="tel:+18315550199"
+              href="tel:+911234567890"
               className="w-full py-2 text-center text-xs text-slate-600 font-medium"
             >
-              Front Desk: (831) 555-0199
+              Front Desk: +91 1234567890
             </a>
           </div>
         </div>

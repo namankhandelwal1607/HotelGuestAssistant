@@ -9,7 +9,7 @@ const EXPERIENCE_PILLARS = [
     title: 'Comfortable Rooms & Suites',
     description:
       'Spacious layouts with plush pillow-top King and Queen beds, private ocean and garden balconies, marble rain showers, and expansive multi-room family villas.',
-    highlight: 'From $220 / night',
+    highlight: 'From ₹18,500 / night',
   },
   {
     icon: Utensils,
@@ -47,7 +47,7 @@ export const HotelExperience: React.FC = () => {
             Everything You Need for a Comfortable Stay
           </h2>
           <p className="text-base sm:text-lg text-slate-600 font-light leading-relaxed">
-            At Azure Grand Hotel, luxury meets tranquility. Our Monterey Bay oceanfront
+            At Azure Grand Hotel, luxury meets tranquility. Our Jaipur, Rajasthan
             property is crafted to provide personalized hospitality, fine dining, and
             unrivaled relaxation for every guest.
           </p>

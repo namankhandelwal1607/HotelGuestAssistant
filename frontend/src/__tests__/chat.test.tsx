@@ -12,25 +12,25 @@ describe('Frontend Component Tests', () => {
   const sampleRoom: RoomAvailabilityResult = {
     roomTypeId: 'deluxe_king',
     name: 'Deluxe King Room',
-    pricePerNight: 220,
+    pricePerNight: 18500,
     maxOccupancy: 2,
     bedConfig: '1 King Bed',
     description: 'Spacious 380 sq ft room featuring an ultra-comfortable plush King pillow-top bed.',
     features: ['Balcony', 'Garden View', 'Nespresso Machine'],
     available: true,
     nights: 3,
-    totalPrice: 660,
-    currency: 'USD'
+    totalPrice: 55500,
+    currency: 'INR'
   };
 
   test('Test 1: AvailabilityCard renders room specs, pricing, and available status', () => {
     render(<AvailabilityCard room={sampleRoom} />);
 
     expect(screen.getByText('Deluxe King Room')).toBeInTheDocument();
-    expect(screen.getByText('$220')).toBeInTheDocument();
+    expect(screen.getByText('₹18,500')).toBeInTheDocument();
     expect(screen.getByText('Available')).toBeInTheDocument();
     expect(screen.getByText('Select Room')).toBeInTheDocument();
-    expect(screen.getByText(/660 total/i)).toBeInTheDocument();
+    expect(screen.getByText(/55,500 total/i)).toBeInTheDocument();
   });
 
   test('Test 2: MessageList displays loading indicator when isLoading is true', () => {

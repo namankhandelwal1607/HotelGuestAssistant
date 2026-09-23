@@ -47,7 +47,7 @@ describe('Model Context Protocol (MCP) Server Tool Tests', () => {
 
       const deluxeKing = parsed.rooms.find((r: any) => r.roomTypeId === 'deluxe_king');
       expect(deluxeKing).toBeDefined();
-      expect(deluxeKing.totalPrice).toBe(220 * 3);
+      expect(deluxeKing.totalPrice).toBe(18500 * 3);
     });
 
     test('invalid date range returns a structured error without throwing', async () => {
@@ -118,7 +118,7 @@ describe('Model Context Protocol (MCP) Server Tool Tests', () => {
       const parsed = JSON.parse(result.content[0].text);
       expect(parsed.id).toBe('deluxe_king');
       expect(parsed.name).toBe('Deluxe King Room');
-      expect(parsed.pricePerNight).toBe(220);
+      expect(parsed.pricePerNight).toBe(18500);
       expect(parsed.maxOccupancy).toBe(2);
       expect(Array.isArray(parsed.features)).toBe(true);
     });

@@ -21,7 +21,7 @@ const ROOMS_DATA: RoomTypeData[] = [
     name: 'Deluxe King Room',
     maxOccupancy: 2,
     bedConfig: '1 King Bed',
-    pricePerNight: 220,
+    pricePerNight: 18500,
     description:
       'Spacious 380 sq ft room featuring an ultra-comfortable plush King pillow-top bed, private balcony with garden views, marble walk-in rain shower, 55-inch smart 4K TV, and Nespresso machine.',
     features: ['Balcony', 'Garden View', 'Walk-in Rain Shower', 'Nespresso Machine', '55" 4K TV'],
@@ -34,7 +34,7 @@ const ROOMS_DATA: RoomTypeData[] = [
     name: 'Deluxe Double Queen Room',
     maxOccupancy: 4,
     bedConfig: '2 Queen Beds',
-    pricePerNight: 260,
+    pricePerNight: 22000,
     description:
       'Generous 450 sq ft room designed for families or traveling groups of up to 4 guests (also ideal for 3 guests). Includes two plush Queen beds, spacious seating area, dual-sink vanity bathroom, and mini-refrigerator.',
     features: ['2 Queen Beds', 'Dual Sink Vanity', 'Mini-Fridge', 'Work Desk', '55" 4K TV'],
@@ -47,7 +47,7 @@ const ROOMS_DATA: RoomTypeData[] = [
     name: 'Executive Harbor Suite',
     maxOccupancy: 3,
     bedConfig: '1 King Bed + 1 Queen Pullout Sofa Bed',
-    pricePerNight: 380,
+    pricePerNight: 32000,
     description:
       'Luxurious 620 sq ft suite featuring a separate master bedroom with 1 King bed and a living parlor with a premium Queen pullout sleeper sofa, comfortably accommodating 3 adult guests. Includes ocean/harbor views, deep soaking tub, complimentary daily breakfast, and late checkout priority.',
     features: [
@@ -66,7 +66,7 @@ const ROOMS_DATA: RoomTypeData[] = [
     name: 'Two-Bedroom Family Villa',
     maxOccupancy: 6,
     bedConfig: '1 King Bed + 2 Twin Beds + 1 Queen Sleeper Sofa',
-    pricePerNight: 520,
+    pricePerNight: 44000,
     description:
       'Expansive 950 sq ft multi-room villa ideal for larger families and groups up to 6 guests. Features 2 private bedrooms, 2 full bathrooms, fully-equipped kitchenette with dining area, private furnished ocean-facing patio, and complimentary daily breakfast.',
     features: [
@@ -130,7 +130,7 @@ export const RoomsSection: React.FC<RoomsSectionProps> = ({ onSelectRoom }) => {
 
                 {/* Nightly Price Tag */}
                 <div className="absolute bottom-4 right-4 px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md text-slate-900 shadow-md">
-                  <span className="text-lg font-bold font-serif">${room.pricePerNight}</span>
+                  <span className="text-lg font-bold font-serif">₹{room.pricePerNight.toLocaleString('en-IN')}</span>
                   <span className="text-xs text-slate-500 font-normal"> / night</span>
                 </div>
               </div>

@@ -92,7 +92,7 @@ describe('Hotel Guest Assistant Backend API Tests', () => {
       // Verify that room items have required structured fields
       const deluxeKing = res.body.data.rooms.find((r: any) => r.roomTypeId === 'deluxe_king');
       expect(deluxeKing).toBeDefined();
-      expect(deluxeKing.totalPrice).toBe(220 * 3);
+      expect(deluxeKing.totalPrice).toBe(18500 * 3);
     });
   });
 

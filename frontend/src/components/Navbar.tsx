@@ -14,7 +14,7 @@ export const Navbar: React.FC = () => {
               The Grand Azure Resort & Spa
             </h1>
             <p className="text-xs text-slate-500 font-medium hidden sm:block">
-              Monterey Bay, California · 5-Star Luxury Oceanfront
+              Jaipur, Rajasthan · 5-Star Luxury Resort
             </p>
           </div>
         </div>
@@ -29,11 +29,11 @@ export const Navbar: React.FC = () => {
           </div>
 
           <a
-            href="tel:+18315550199"
+            href="tel:+911234567890"
             className="hidden md:flex items-center gap-1.5 text-xs text-slate-600 hover:text-sky-700 font-medium py-1.5 px-3 rounded-lg border border-slate-200 hover:bg-slate-50 transition-colors"
           >
             <Phone className="w-3.5 h-3.5" />
-            Front Desk: (831) 555-0199
+            Front Desk: +91 1234567890
           </a>
         </div>
       </div>

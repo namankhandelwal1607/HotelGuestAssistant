@@ -1,16 +1,16 @@
 {
   "hotel": {
     "name": "The Grand Azure & Grand Aurel Resort & Spa",
-    "address": "742 Oceanview Boulevard, Monterey Bay, CA 93940",
-    "phone": "+1 (831) 555-0199",
+    "address": "742 Palace Boulevard, Jaipur, Rajasthan 302001, India",
+    "phone": "+91 1234567890",
     "email": "concierge@grandazureresort.com",
     "concierge_extension": "ext. 0",
     "check_in_time": "3:00 PM",
-    "check_out_time": "11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM available for $95)",
+    "check_out_time": "11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM available for ₹7,500)",
     "cancellation_policy": "Free cancellation up to 48 hours prior to check-in (3:00 PM local time). Cancellations made within 48 hours of arrival incur a fee equal to the first night's room rate plus tax.",
-    "breakfast_policy": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM. For Azure Bay dining room, breakfast is served 7:00 AM - 10:30 AM ($25/adult, complimentary for Executive Harbor Suites and Two-Bedroom Family Villas).",
+    "breakfast_policy": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM. For Azure Bay dining room, breakfast is served 7:00 AM - 10:30 AM (₹2,000/adult, complimentary for Executive Harbor Suites and Two-Bedroom Family Villas).",
     "meal_policy": "Lunch and dinner are available à la carte at our dining venues or via 24-hour room service. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails.",
-    "currency": "USD"
+    "currency": "INR"
   },
   "amenities": [
     {
@@ -21,27 +21,27 @@
     {
       "id": "gym",
       "name": "24/7 Fitness Centre",
-      "description": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour."
+      "description": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at ₹9,500/hour."
     },
     {
       "id": "spa",
       "name": "The Aurel Spa",
-      "description": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?"
+      "description": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, ₹22,000), deep tissue massage (60 min, ₹15,500), and our bespoke facial with locally sourced botanicals (75 min, ₹19,000). Shall I check availability for you?"
     },
     {
       "id": "wifi",
       "name": "High-Speed Wi-Fi",
-      "description": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day."
+      "description": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at ₹1,500/day."
     },
     {
       "id": "dining",
       "name": "Dining & In-Room Dining",
-      "description": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. For local dining, we recommend Maison Bleu on Rue Saint-Honoré (10-min walk, Michelin-starred seasonal tasting menu) or Café de Flore. We can make reservations on your behalf."
+      "description": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. For local dining, we recommend 1135 AD at Amer Fort (fine Rajasthani royal dining) or Suvarna Mahal. We can make reservations on your behalf."
     },
     {
       "id": "airport",
       "name": "Airport Transfers & Chauffeur",
-      "description": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details."
+      "description": "We partner with Prestige Chauffeur for all transfers. A private sedan to Jaipur International Airport (JAI) is ₹3,500 (30–45 min). I can arrange pick-up for any time — please share your departure details."
     },
     {
       "id": "concierge",
@@ -51,7 +51,7 @@
     {
       "id": "parking",
       "name": "Valet Parking & EV Charging",
-      "description": "Secure valet parking is available for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal EV charging stations are available for valet vehicles."
+      "description": "Secure valet parking is available for ₹1,500 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 universal EV charging stations are available for valet vehicles."
     }
   ],
   "rooms": [
@@ -60,7 +60,7 @@
       "name": "Deluxe King Room",
       "maxOccupancy": 2,
       "bedConfig": "1 King Bed",
-      "pricePerNight": 220,
+      "pricePerNight": 18500,
       "description": "Spacious 380 sq ft room featuring an ultra-comfortable plush King pillow-top bed, private balcony with garden views, marble walk-in rain shower, 55-inch smart 4K TV, and Nespresso machine.",
       "features": ["Balcony", "Garden View", "Walk-in Rain Shower", "Nespresso Machine", "55-inch 4K TV"]
     },
@@ -69,7 +69,7 @@
       "name": "Deluxe Double Queen Room",
       "maxOccupancy": 4,
       "bedConfig": "2 Queen Beds",
-      "pricePerNight": 260,
+      "pricePerNight": 22000,
       "description": "Generous 450 sq ft room designed for families or traveling groups of up to 4 guests (also ideal for 3 guests). Includes two plush Queen beds, spacious seating area, dual-sink vanity bathroom, and mini-refrigerator.",
       "features": ["2 Queen Beds", "Dual Sink Vanity", "Mini-Fridge", "Work Desk", "55-inch 4K TV"]
     },
@@ -78,7 +78,7 @@
       "name": "Executive Harbor Suite",
       "maxOccupancy": 3,
       "bedConfig": "1 King Bed + 1 Queen Pullout Sofa Bed",
-      "pricePerNight": 380,
+      "pricePerNight": 32000,
       "description": "Luxurious 620 sq ft suite featuring a separate master bedroom with 1 King bed and a living parlor with a premium Queen pullout sleeper sofa, comfortably accommodating 3 adult guests. Includes ocean/harbor views, deep soaking tub, complimentary daily breakfast, and late checkout priority.",
       "features": ["Ocean Harbor View", "Separate Living Room", "Soaking Tub", "Complimentary Daily Breakfast", "Priority Late Checkout"]
     },
@@ -87,7 +87,7 @@
       "name": "Two-Bedroom Family Villa",
       "maxOccupancy": 6,
       "bedConfig": "1 King Bed + 2 Twin Beds + 1 Queen Sleeper Sofa",
-      "pricePerNight": 520,
+      "pricePerNight": 44000,
       "description": "Expansive 950 sq ft multi-room villa ideal for larger families and groups up to 6 guests. Features 2 private bedrooms, 2 full bathrooms, fully-equipped kitchenette with dining area, private furnished ocean-facing patio, and complimentary daily breakfast.",
       "features": ["Kitchenette", "Private Ocean Patio", "2 Full Bathrooms", "Complimentary Daily Breakfast", "Dining Area"]
     }
@@ -95,11 +95,11 @@
   "faqs": [
     {
       "question": "What time is check-in and check-out?",
-      "answer": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel). Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like."
+      "answer": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel). Late check-out until 4 PM is available for ₹7,500, subject to availability — I can request that for your room right now if you'd like."
     },
     {
       "question": "What is the check-out time?",
-      "answer": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like."
+      "answer": "Standard check-out is at noon. Late check-out until 4 PM is available for ₹7,500, subject to availability — I can request that for your room right now if you'd like."
     },
     {
       "question": "What are your room service hours and menu?",
@@ -107,15 +107,15 @@
     },
     {
       "question": "What spa treatments and appointments are available?",
-      "answer": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?"
+      "answer": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, ₹22,000), deep tissue massage (60 min, ₹15,500), and our bespoke facial with locally sourced botanicals (75 min, ₹19,000). Shall I check availability for you?"
     },
     {
       "question": "Can you recommend local dining?",
-      "answer": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size."
+      "answer": "We recommend 1135 AD at Amer Fort — stunning royal Rajasthani dining. For something more relaxed, Suvarna Mahal is nearby. I can make a reservation on your behalf — just let me know the time and party size."
     },
     {
       "question": "Do you offer airport transportation or transfers?",
-      "answer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details."
+      "answer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Jaipur International Airport (JAI) is ₹3,500 (30–45 min). I can arrange pick-up for any time — please share your departure details."
     },
     {
       "question": "What concierge services do you provide?",
@@ -127,11 +127,11 @@
     },
     {
       "question": "What are the fitness centre / gym hours and equipment?",
-      "answer": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour."
+      "answer": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at ₹9,500/hour."
     },
     {
       "question": "How do I connect to Wi-Fi, and is premium bandwidth available?",
-      "answer": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day."
+      "answer": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at ₹1,500/day."
     },
     {
       "question": "When and where is breakfast served?",
@@ -147,11 +147,11 @@
     },
     {
       "question": "Are pets allowed at the hotel?",
-      "answer": "Yes, we welcome up to two dogs per room under 25 lbs each. A non-refundable pet cleaning fee of $75 per stay applies. Certified service animals are always accommodated with no fee."
+      "answer": "Yes, we welcome up to two dogs per room under 25 lbs each. A non-refundable pet cleaning fee of ₹3,500 per stay applies. Certified service animals are always accommodated with no fee."
     },
     {
       "question": "Is parking available, and how much does it cost?",
-      "answer": "We offer secure valet parking for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal EV charging stations are available for valet vehicles."
+      "answer": "We offer secure valet parking for ₹1,500 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 universal EV charging stations are available for valet vehicles."
     },
     {
       "question": "Can I store my luggage before check-in or after check-out?",
@@ -167,22 +167,22 @@
     }
   ],
   "qa_responses": {
-    "default": "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk or call our concierge desk directly at ext. 0.",
+    "default": "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk at +91 1234567890 or call our concierge desk directly at ext. 0.",
     "room service": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?",
     "room service menu": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?",
-    "spa": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
-    "spa appointments": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
-    "dining": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
-    "local dining": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
-    "checkout": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
-    "check-out time": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
-    "airport": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
-    "airport transfer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
+    "spa": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, ₹22,000), deep tissue massage (60 min, ₹15,500), and our bespoke facial with locally sourced botanicals (75 min, ₹19,000). Shall I check availability for you?",
+    "spa appointments": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, ₹22,000), deep tissue massage (60 min, ₹15,500), and our bespoke facial with locally sourced botanicals (75 min, ₹19,000). Shall I check availability for you?",
+    "dining": "We recommend 1135 AD at Amer Fort — stunning royal Rajasthani dining. For something more relaxed, Suvarna Mahal is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+    "local dining": "We recommend 1135 AD at Amer Fort — stunning royal Rajasthani dining. For something more relaxed, Suvarna Mahal is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+    "checkout": "Standard check-out is at noon. Late check-out until 4 PM is available for ₹7,500, subject to availability — I can request that for your room right now if you'd like.",
+    "check-out time": "Standard check-out is at noon. Late check-out until 4 PM is available for ₹7,500, subject to availability — I can request that for your room right now if you'd like.",
+    "airport": "We partner with Prestige Chauffeur for all transfers. A private sedan to Jaipur International Airport (JAI) is ₹3,500 (30–45 min). I can arrange pick-up for any time — please share your departure details.",
+    "airport transfer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Jaipur International Airport (JAI) is ₹3,500 (30–45 min). I can arrange pick-up for any time — please share your departure details.",
     "concierge": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?",
     "concierge services": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?",
     "pool": "The rooftop pool is open from 7 AM to 10 PM for guests. Cabanas may be reserved in advance. Poolside service for drinks and light bites runs 10 AM to 8 PM.",
-    "gym": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour.",
-    "wifi": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day.",
+    "gym": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at ₹9,500/hour.",
+    "wifi": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at ₹1,500/day.",
     "breakfast": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM.",
     "hello": "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",
     "hi": "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",

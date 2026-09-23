@@ -18,14 +18,14 @@ const AMENITIES_DATA = [
     name: 'Rooftop Heated Infinity Pool',
     hours: '7:00 AM – 10:00 PM',
     description:
-      'Heated oceanfront rooftop pool offering panoramic Monterey Bay views, poolside cocktail and light bite service (10 AM–8 PM), and reservable private cabanas.',
+      'Heated rooftop pool offering panoramic Jaipur views, poolside cocktail and light bite service (10 AM–8 PM), and reservable private cabanas.',
   },
   {
     icon: Sparkles,
     name: 'The Aurel Spa & Hammam',
     hours: '8:00 AM – 9:00 PM',
     description:
-      'Signature wellness sanctuary featuring the 90-minute Grand Hammam ritual ($280), therapeutic deep tissue massages ($195), and bespoke botanical facials ($240).',
+      'Signature wellness sanctuary featuring the 90-minute Grand Hammam ritual (₹22,000), therapeutic deep tissue massages (₹15,500), and bespoke botanical facials (₹19,000).',
   },
   {
     icon: Dumbbell,
@@ -50,24 +50,24 @@ const AMENITIES_DATA = [
   },
   {
     icon: Car,
-    name: 'Secure Valet & Tesla EV Charging',
+    name: 'Secure Valet & EV Charging',
     hours: '24-Hour Valet',
     description:
-      'Convenient valet parking ($35/overnight) with unlimited in-and-out privileges and complimentary Level 2 Tesla and universal electric vehicle charging stations.',
+      'Convenient valet parking (₹1,500/overnight) with unlimited in-and-out privileges and complimentary Level 2 universal electric vehicle charging stations.',
   },
   {
     icon: Plane,
     name: 'Airport Chauffeur Service',
     hours: 'On Request',
     description:
-      'Private luxury sedan transfers in partnership with Prestige Chauffeur for effortless, stress-free arrivals and departures to all regional airports.',
+      'Private luxury sedan transfers in partnership with Prestige Chauffeur for effortless, stress-free arrivals and departures to Jaipur International Airport (JAI).',
   },
   {
     icon: Compass,
     name: 'Dedicated Concierge Desk',
     hours: 'Dial Ext. 0',
     description:
-      'Our seasoned concierge team arranges private winery tours, coastal excursions, florist orders, and guaranteed reservations at Michelin-starred restaurants.',
+      'Our seasoned concierge team arranges heritage palace tours, cultural excursions, florist orders, and guaranteed reservations at fine dining restaurants.',
   },
 ];
 

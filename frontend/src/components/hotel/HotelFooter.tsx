@@ -33,7 +33,7 @@ export const HotelFooter: React.FC<HotelFooterProps> = ({ onCheckAvailabilityCli
               &ldquo;Your stay, made effortless.&rdquo;
             </p>
             <p className="text-xs text-slate-400 leading-relaxed font-light">
-              A luxury oceanfront resort situated on the coastline of Monterey Bay,
+              A luxury resort situated in the historic city of Jaipur, Rajasthan,
               offering timeless hospitality, fine dining, and modern guest service.
             </p>
           </div>
@@ -100,12 +100,12 @@ export const HotelFooter: React.FC<HotelFooterProps> = ({ onCheckAvailabilityCli
             <div className="space-y-2.5 text-xs text-slate-400 font-light">
               <div className="flex items-start gap-2">
                 <MapPin className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                <span>742 Oceanview Boulevard, Monterey Bay, CA 93940</span>
+                <span>742 Palace Boulevard, Jaipur, Rajasthan 302001, India</span>
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-amber-500 shrink-0" />
-                <a href="tel:+18315550199" className="hover:text-white transition-colors">
-                  +1 (831) 555-0199 (Front Desk)
+                <a href="tel:+911234567890" className="hover:text-white transition-colors">
+                  +91 1234567890 (Front Desk)
                 </a>
               </div>
               <div className="flex items-center gap-2">
@@ -136,7 +136,7 @@ export const HotelFooter: React.FC<HotelFooterProps> = ({ onCheckAvailabilityCli
                 <strong className="text-slate-300 font-medium">Cancellation:</strong> Free up to 48 hours prior to arrival
               </p>
               <p>
-                <strong className="text-slate-300 font-medium">Pet Policy:</strong> Up to 2 dogs under 25 lbs ($75 stay fee)
+                <strong className="text-slate-300 font-medium">Pet Policy:</strong> Up to 2 dogs under 25 lbs (₹3,500 stay fee)
               </p>
             </div>
           </div>
@@ -146,7 +146,7 @@ export const HotelFooter: React.FC<HotelFooterProps> = ({ onCheckAvailabilityCli
         <div className="pt-8 border-t border-slate-800 text-center text-xs text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p>© {new Date().getFullYear()} Azure Grand Hotel &amp; Spa. All rights reserved.</p>
           <p className="text-[11px] text-slate-500">
-            Monterey Bay, California · 5-Star Oceanfront Hospitality
+            Jaipur, Rajasthan · 5-Star Luxury Hospitality
           </p>
         </div>
       </div>
