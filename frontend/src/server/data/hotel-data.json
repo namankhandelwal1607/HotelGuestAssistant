@@ -1,0 +1,129 @@
+{
+  "hotel": {
+    "name": "The Grand Azure Resort & Spa",
+    "address": "742 Oceanview Boulevard, Monterey Bay, CA 93940",
+    "phone": "+1 (831) 555-0199",
+    "email": "concierge@grandazureresort.com",
+    "check_in_time": "3:00 PM",
+    "check_out_time": "11:00 AM",
+    "cancellation_policy": "Free cancellation up to 48 hours prior to check-in (3:00 PM local time). Cancellations made within 48 hours of arrival incur a fee equal to the first night's room rate plus tax.",
+    "breakfast_policy": "Breakfast buffet is served daily from 7:00 AM to 10:30 AM in the Azure Bay Dining Room. It costs $25 per adult and $15 per child under 12. Complimentary full daily breakfast is included for all guests staying in Executive Harbor Suites and Two-Bedroom Family Villas.",
+    "meal_policy": "Lunch and dinner are not included in the standard room rates. Only breakfast is included complimentary for guests in Executive Harbor Suites and Two-Bedroom Family Villas (or available for purchase at $25/adult). Lunch and dinner are available à la carte at our three on-site restaurants: Azure Bay (coastal fine dining), The Tide Bar & Lounge, and Seaside Cafe, or via 24-hour room service.",
+    "currency": "USD"
+  },
+  "amenities": [
+    {
+      "id": "pool",
+      "name": "Rooftop Heated Infinity Pool",
+      "description": "Heated rooftop infinity pool with panoramic ocean views, open daily from 6:00 AM to 10:00 PM. Complimentary private cabanas and towel service are available."
+    },
+    {
+      "id": "gym",
+      "name": "24/7 Wellness Fitness Center & Spa",
+      "description": "State-of-the-art 24/7 fitness center on the 3rd floor equipped with Peloton bikes, LifeFitness treadmills, free weights, and a yoga studio. Azure Spa offers massage and hydrotherapy treatments from 9:00 AM to 7:00 PM."
+    },
+    {
+      "id": "wifi",
+      "name": "High-Speed Fiber Wi-Fi",
+      "description": "Complimentary ultra-high-speed fiber Wi-Fi (up to 300 Mbps) is available throughout all guest rooms, lobby, pool deck, and restaurants. No password required; connect to 'GrandAzure-Guest' and accept terms."
+    },
+    {
+      "id": "parking",
+      "name": "Valet Parking & EV Charging",
+      "description": "Secure valet parking is available for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal J1772 EV charging stations are available for valet vehicles."
+    },
+    {
+      "id": "dining",
+      "name": "On-Site Dining & Cocktail Lounge",
+      "description": "Three dining venues: 'Azure Bay' (coastal California fine dining, 5:30 PM - 10:00 PM), 'The Tide Bar & Lounge' (cocktails & coastal bites, 11:00 AM - 12:00 AM), and 'Seaside Cafe' (espresso & fresh pastries, 6:30 AM - 3:00 PM). Room service is available 24 hours."
+    }
+  ],
+  "rooms": [
+    {
+      "id": "deluxe_king",
+      "name": "Deluxe King Room",
+      "maxOccupancy": 2,
+      "bedConfig": "1 King Bed",
+      "pricePerNight": 220,
+      "description": "Spacious 380 sq ft room featuring an ultra-comfortable plush King pillow-top bed, private balcony with garden views, marble walk-in rain shower, 55-inch smart 4K TV, and Nespresso machine.",
+      "features": ["Balcony", "Garden View", "Walk-in Rain Shower", "Nespresso Machine", "55-inch 4K TV"]
+    },
+    {
+      "id": "deluxe_double_queen",
+      "name": "Deluxe Double Queen Room",
+      "maxOccupancy": 4,
+      "bedConfig": "2 Queen Beds",
+      "pricePerNight": 260,
+      "description": "Generous 450 sq ft room designed for families or traveling groups of up to 4 guests (also ideal for 3 guests). Includes two plush Queen beds, spacious seating area, dual-sink vanity bathroom, and mini-refrigerator.",
+      "features": ["2 Queen Beds", "Dual Sink Vanity", "Mini-Fridge", "Work Desk", "55-inch 4K TV"]
+    },
+    {
+      "id": "executive_harbor_suite",
+      "name": "Executive Harbor Suite",
+      "maxOccupancy": 3,
+      "bedConfig": "1 King Bed + 1 Queen Pullout Sofa Bed",
+      "pricePerNight": 380,
+      "description": "Luxurious 620 sq ft suite featuring a separate master bedroom with 1 King bed and a living parlor with a premium Queen pullout sleeper sofa, comfortably accommodating 3 adult guests. Includes ocean/harbor views, deep soaking tub, complimentary daily breakfast, and late checkout priority.",
+      "features": ["Ocean Harbor View", "Separate Living Room", "Soaking Tub", "Complimentary Daily Breakfast", "Priority Late Checkout"]
+    },
+    {
+      "id": "two_bedroom_family_villa",
+      "name": "Two-Bedroom Family Villa",
+      "maxOccupancy": 6,
+      "bedConfig": "1 King Bed + 2 Twin Beds + 1 Queen Sleeper Sofa",
+      "pricePerNight": 520,
+      "description": "Expansive 950 sq ft multi-room villa ideal for larger families and groups up to 6 guests. Features 2 private bedrooms, 2 full bathrooms, fully-equipped kitchenette with dining area, private furnished ocean-facing patio, and complimentary daily breakfast.",
+      "features": ["Kitchenette", "Private Ocean Patio", "2 Full Bathrooms", "Complimentary Daily Breakfast", "Dining Area"]
+    }
+  ],
+  "faqs": [
+    {
+      "question": "What time is check-in and check-out?",
+      "answer": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM. Early check-in or late check-out may be arranged based on availability upon request at the front desk."
+    },
+    {
+      "question": "Does the hotel have a swimming pool?",
+      "answer": "Yes, we feature a heated rooftop infinity pool offering panoramic ocean views. The pool is open daily from 6:00 AM to 10:00 PM with complimentary cabanas and towel service."
+    },
+    {
+      "question": "Is breakfast included in the room rate?",
+      "answer": "Breakfast is complimentary for guests staying in Executive Harbor Suites and Two-Bedroom Family Villas. For Deluxe King and Deluxe Double Queen guests, our gourmet buffet at Azure Bay is available for $25 per adult and $15 per child under 12."
+    },
+    {
+      "question": "What is the cancellation policy?",
+      "answer": "You may cancel free of charge up to 48 hours prior to your scheduled check-in time (3:00 PM). Cancellations received within 48 hours of arrival will be charged the first night's room rate plus tax."
+    },
+    {
+      "question": "Which room is suitable for three guests?",
+      "answer": "For three guests, we recommend either the Executive Harbor Suite (1 King bed + 1 Queen pullout sofa bed, plus complimentary breakfast) or the Deluxe Double Queen Room (2 Queen beds, accommodating up to 4 guests comfortably)."
+    },
+    {
+      "question": "Are pets allowed at the hotel?",
+      "answer": "Yes, we welcome up to two dogs per room under 25 lbs each. A non-refundable pet cleaning fee of $75 per stay applies. Certified service animals are always accommodated with no fee."
+    },
+    {
+      "question": "Is parking available, and how much does it cost?",
+      "answer": "We offer secure valet parking for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal EV charging stations are available for valet vehicles."
+    },
+    {
+      "question": "Do you offer airport transportation or shuttles?",
+      "answer": "We do not have a complimentary airport shuttle, but our concierge can arrange private town car or taxi transfers to Monterey Regional Airport (MRY) and San Jose International (SJC)."
+    },
+    {
+      "question": "Can I store my luggage before check-in or after check-out?",
+      "answer": "Yes, complimentary secure luggage storage is available with our bell desk 24 hours a day, both before check-in and after check-out."
+    },
+    {
+      "question": "Is the hotel smoke-free?",
+      "answer": "The Grand Azure Resort is a 100% non-smoking property. Smoking, including e-cigarettes and vaping, is strictly prohibited in all guest rooms, balconies, and indoor public spaces."
+    },
+    {
+      "question": "Are lunch and dinner included in the room rate or room budget?",
+      "answer": "No, lunch and dinner are not included in the room rate or room budget. Only breakfast is included for select room types (complimentary for Executive Harbor Suites and Two-Bedroom Family Villas, or $25 per adult for other rooms). Guests can enjoy lunch and dinner à la carte at our three on-site restaurants (Azure Bay, The Tide Bar & Lounge, and Seaside Cafe) or via 24-hour room service."
+    },
+    {
+      "question": "What meals are included with a room booking?",
+      "answer": "Only breakfast is included (complimentary for guests staying in Executive Harbor Suites and Two-Bedroom Family Villas, or $25 per adult for Deluxe rooms). Lunch, dinner, snacks, and alcoholic beverages are not included in room rates and are billed separately."
+    }
+  ]
+}
