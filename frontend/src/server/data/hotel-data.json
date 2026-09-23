@@ -1,41 +1,57 @@
 {
   "hotel": {
-    "name": "The Grand Azure Resort & Spa",
+    "name": "The Grand Azure & Grand Aurel Resort & Spa",
     "address": "742 Oceanview Boulevard, Monterey Bay, CA 93940",
     "phone": "+1 (831) 555-0199",
     "email": "concierge@grandazureresort.com",
+    "concierge_extension": "ext. 0",
     "check_in_time": "3:00 PM",
-    "check_out_time": "11:00 AM",
+    "check_out_time": "11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM available for $95)",
     "cancellation_policy": "Free cancellation up to 48 hours prior to check-in (3:00 PM local time). Cancellations made within 48 hours of arrival incur a fee equal to the first night's room rate plus tax.",
-    "breakfast_policy": "Breakfast buffet is served daily from 7:00 AM to 10:30 AM in the Azure Bay Dining Room. It costs $25 per adult and $15 per child under 12. Complimentary full daily breakfast is included for all guests staying in Executive Harbor Suites and Two-Bedroom Family Villas.",
-    "meal_policy": "Lunch and dinner are not included in the standard room rates. Only breakfast is included complimentary for guests in Executive Harbor Suites and Two-Bedroom Family Villas (or available for purchase at $25/adult). Lunch and dinner are available à la carte at our three on-site restaurants: Azure Bay (coastal fine dining), The Tide Bar & Lounge, and Seaside Cafe, or via 24-hour room service.",
+    "breakfast_policy": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM. For Azure Bay dining room, breakfast is served 7:00 AM - 10:30 AM ($25/adult, complimentary for Executive Harbor Suites and Two-Bedroom Family Villas).",
+    "meal_policy": "Lunch and dinner are available à la carte at our dining venues or via 24-hour room service. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails.",
     "currency": "USD"
   },
   "amenities": [
     {
       "id": "pool",
       "name": "Rooftop Heated Infinity Pool",
-      "description": "Heated rooftop infinity pool with panoramic ocean views, open daily from 6:00 AM to 10:00 PM. Complimentary private cabanas and towel service are available."
+      "description": "The heated rooftop infinity pool is open from 7 AM to 10 PM for guests. Cabanas may be reserved in advance. Poolside service for drinks and light bites runs 10 AM to 8 PM."
     },
     {
       "id": "gym",
-      "name": "24/7 Wellness Fitness Center & Spa",
-      "description": "State-of-the-art 24/7 fitness center on the 3rd floor equipped with Peloton bikes, LifeFitness treadmills, free weights, and a yoga studio. Azure Spa offers massage and hydrotherapy treatments from 9:00 AM to 7:00 PM."
+      "name": "24/7 Fitness Centre",
+      "description": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour."
+    },
+    {
+      "id": "spa",
+      "name": "The Aurel Spa",
+      "description": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?"
     },
     {
       "id": "wifi",
-      "name": "High-Speed Fiber Wi-Fi",
-      "description": "Complimentary ultra-high-speed fiber Wi-Fi (up to 300 Mbps) is available throughout all guest rooms, lobby, pool deck, and restaurants. No password required; connect to 'GrandAzure-Guest' and accept terms."
+      "name": "High-Speed Wi-Fi",
+      "description": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day."
+    },
+    {
+      "id": "dining",
+      "name": "Dining & In-Room Dining",
+      "description": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. For local dining, we recommend Maison Bleu on Rue Saint-Honoré (10-min walk, Michelin-starred seasonal tasting menu) or Café de Flore. We can make reservations on your behalf."
+    },
+    {
+      "id": "airport",
+      "name": "Airport Transfers & Chauffeur",
+      "description": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details."
+    },
+    {
+      "id": "concierge",
+      "name": "Concierge Services",
+      "description": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants (contact directly at ext. 0)."
     },
     {
       "id": "parking",
       "name": "Valet Parking & EV Charging",
-      "description": "Secure valet parking is available for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal J1772 EV charging stations are available for valet vehicles."
-    },
-    {
-      "id": "dining",
-      "name": "On-Site Dining & Cocktail Lounge",
-      "description": "Three dining venues: 'Azure Bay' (coastal California fine dining, 5:30 PM - 10:00 PM), 'The Tide Bar & Lounge' (cocktails & coastal bites, 11:00 AM - 12:00 AM), and 'Seaside Cafe' (espresso & fresh pastries, 6:30 AM - 3:00 PM). Room service is available 24 hours."
+      "description": "Secure valet parking is available for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal EV charging stations are available for valet vehicles."
     }
   ],
   "rooms": [
@@ -79,23 +95,55 @@
   "faqs": [
     {
       "question": "What time is check-in and check-out?",
-      "answer": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM. Early check-in or late check-out may be arranged based on availability upon request at the front desk."
+      "answer": "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel). Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like."
+    },
+    {
+      "question": "What is the check-out time?",
+      "answer": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like."
+    },
+    {
+      "question": "What are your room service hours and menu?",
+      "answer": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?"
+    },
+    {
+      "question": "What spa treatments and appointments are available?",
+      "answer": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?"
+    },
+    {
+      "question": "Can you recommend local dining?",
+      "answer": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size."
+    },
+    {
+      "question": "Do you offer airport transportation or transfers?",
+      "answer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details."
+    },
+    {
+      "question": "What concierge services do you provide?",
+      "answer": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?"
     },
     {
       "question": "Does the hotel have a swimming pool?",
-      "answer": "Yes, we feature a heated rooftop infinity pool offering panoramic ocean views. The pool is open daily from 6:00 AM to 10:00 PM with complimentary cabanas and towel service."
+      "answer": "The heated rooftop infinity pool is open from 7 AM to 10 PM for guests. Cabanas may be reserved in advance. Poolside service for drinks and light bites runs 10 AM to 8 PM."
     },
     {
-      "question": "Is breakfast included in the room rate?",
-      "answer": "Breakfast is complimentary for guests staying in Executive Harbor Suites and Two-Bedroom Family Villas. For Deluxe King and Deluxe Double Queen guests, our gourmet buffet at Azure Bay is available for $25 per adult and $15 per child under 12."
+      "question": "What are the fitness centre / gym hours and equipment?",
+      "answer": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour."
     },
     {
-      "question": "What is the cancellation policy?",
-      "answer": "You may cancel free of charge up to 48 hours prior to your scheduled check-in time (3:00 PM). Cancellations received within 48 hours of arrival will be charged the first night's room rate plus tax."
+      "question": "How do I connect to Wi-Fi, and is premium bandwidth available?",
+      "answer": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day."
+    },
+    {
+      "question": "When and where is breakfast served?",
+      "answer": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM."
     },
     {
       "question": "Which room is suitable for three guests?",
       "answer": "For three guests, we recommend either the Executive Harbor Suite (1 King bed + 1 Queen pullout sofa bed, plus complimentary breakfast) or the Deluxe Double Queen Room (2 Queen beds, accommodating up to 4 guests comfortably)."
+    },
+    {
+      "question": "What is the cancellation policy?",
+      "answer": "You may cancel free of charge up to 48 hours prior to your scheduled check-in time (3:00 PM). Cancellations received within 48 hours of arrival will be charged the first night's room rate plus tax."
     },
     {
       "question": "Are pets allowed at the hotel?",
@@ -106,24 +154,38 @@
       "answer": "We offer secure valet parking for $35 per overnight stay with unlimited in-and-out privileges. Complimentary Level 2 Tesla and universal EV charging stations are available for valet vehicles."
     },
     {
-      "question": "Do you offer airport transportation or shuttles?",
-      "answer": "We do not have a complimentary airport shuttle, but our concierge can arrange private town car or taxi transfers to Monterey Regional Airport (MRY) and San Jose International (SJC)."
-    },
-    {
       "question": "Can I store my luggage before check-in or after check-out?",
       "answer": "Yes, complimentary secure luggage storage is available with our bell desk 24 hours a day, both before check-in and after check-out."
     },
     {
       "question": "Is the hotel smoke-free?",
-      "answer": "The Grand Azure Resort is a 100% non-smoking property. Smoking, including e-cigarettes and vaping, is strictly prohibited in all guest rooms, balconies, and indoor public spaces."
+      "answer": "The hotel is a 100% non-smoking property. Smoking, including e-cigarettes and vaping, is strictly prohibited in all guest rooms, balconies, and indoor public spaces."
     },
     {
       "question": "Are lunch and dinner included in the room rate or room budget?",
-      "answer": "No, lunch and dinner are not included in the room rate or room budget. Only breakfast is included for select room types (complimentary for Executive Harbor Suites and Two-Bedroom Family Villas, or $25 per adult for other rooms). Guests can enjoy lunch and dinner à la carte at our three on-site restaurants (Azure Bay, The Tide Bar & Lounge, and Seaside Cafe) or via 24-hour room service."
-    },
-    {
-      "question": "What meals are included with a room booking?",
-      "answer": "Only breakfast is included (complimentary for guests staying in Executive Harbor Suites and Two-Bedroom Family Villas, or $25 per adult for Deluxe rooms). Lunch, dinner, snacks, and alcoholic beverages are not included in room rates and are billed separately."
+      "answer": "No, lunch and dinner are not included in the room rate or room budget. Guests can enjoy lunch and dinner à la carte at our dining venues or via 24-hour room service (breakfast 6–11 AM, lunch 12–3 PM, dinner 6 PM–midnight)."
     }
-  ]
+  ],
+  "qa_responses": {
+    "default": "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk or call our concierge desk directly at ext. 0.",
+    "room service": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?",
+    "room service menu": "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?",
+    "spa": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
+    "spa appointments": "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
+    "dining": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+    "local dining": "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+    "checkout": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
+    "check-out time": "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
+    "airport": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
+    "airport transfer": "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
+    "concierge": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?",
+    "concierge services": "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?",
+    "pool": "The rooftop pool is open from 7 AM to 10 PM for guests. Cabanas may be reserved in advance. Poolside service for drinks and light bites runs 10 AM to 8 PM.",
+    "gym": "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour.",
+    "wifi": "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day.",
+    "breakfast": "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM.",
+    "hello": "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",
+    "hi": "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",
+    "hey": "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?"
+  }
 }

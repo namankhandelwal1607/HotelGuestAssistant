@@ -36,6 +36,7 @@ export interface HotelData {
   amenities: Amenity[];
   rooms: RoomType[];
   faqs: FAQ[];
+  qa_responses?: Record<string, string>;
 }
 
 export type MessageRole = 'user' | 'assistant' | 'system';

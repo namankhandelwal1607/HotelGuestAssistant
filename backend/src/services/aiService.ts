@@ -293,6 +293,15 @@ export class AIService {
     const lower = message.toLowerCase().trim();
     const hotelData = hotelRepo.getAll();
 
+    // 0. Greetings Check
+    if (lower === 'hello' || lower === 'hi' || lower === 'hey' || lower.startsWith('hello ') || lower.startsWith('hi ') || lower.startsWith('hey ')) {
+      return {
+        reply: hotelData.qa_responses?.['hello'] || "Good evening. Welcome to Grand Aurel. I'm here to make your stay effortless — how may I assist you tonight?",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
     // 1. Availability Request Detection
     const hasAvailabilityKeywords =
       lower.includes('available') ||
@@ -402,11 +411,66 @@ export class AIService {
     }
 
     // 3. Specific FAQ / Knowledge Base Matching
-    // Check-in / check-out time
-    if (lower.includes('check-in') || lower.includes('check in') || lower.includes('check out') || lower.includes('checkout')) {
-      const faq = hotelData.faqs.find((f) => f.question.toLowerCase().includes('check-in'));
+    // Room service / In-room dining
+    if (lower.includes('room service') || lower.includes('in-room dining') || lower.includes('in room dining')) {
       return {
-        reply: faq ? faq.answer : `Check-in is at ${hotelData.hotel.check_in_time} and check-out is by ${hotelData.hotel.check_out_time}.`,
+        reply: hotelData.qa_responses?.['room service'] || "Our in-room dining is available 24 hours. Breakfast is served 6–11 AM, lunch 12–3 PM, and dinner from 6 PM through midnight. After midnight, our late-night menu features light fare and classic cocktails. Shall I send the full menu to your room's tablet?",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Spa / Spa appointments
+    if (lower.includes('spa') || lower.includes('hammam') || lower.includes('massage') || lower.includes('facial')) {
+      return {
+        reply: hotelData.qa_responses?.['spa'] || "The Aurel Spa is open daily from 8 AM to 9 PM. We offer signature treatments including the Grand Hammam ritual (90 min, $280), deep tissue massage (60 min, $195), and our bespoke facial with locally sourced botanicals (75 min, $240). Shall I check availability for you?",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Local dining / Restaurants
+    if ((lower.includes('dining') || lower.includes('restaurant') || lower.includes('maison bleu') || lower.includes('café de flore') || lower.includes('local dining')) && !lower.includes('room service')) {
+      return {
+        reply: hotelData.qa_responses?.['dining'] || "We recommend Maison Bleu on Rue Saint-Honoré — a 10-minute walk, Michelin-starred, stunning seasonal tasting menu. For something more relaxed, Café de Flore is nearby. I can make a reservation on your behalf — just let me know the time and party size.",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Airport / Airport transfers / Chauffeur
+    if (lower.includes('airport') || lower.includes('transfer') || lower.includes('chauffeur') || lower.includes('charles de gaulle') || lower.includes('orly')) {
+      return {
+        reply: hotelData.qa_responses?.['airport'] || "We partner with Prestige Chauffeur for all transfers. A private sedan to Charles de Gaulle is €140 (45–60 min), and to Orly €115 (35–50 min). I can arrange pick-up for any time — please share your departure details.",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Concierge / Concierge services
+    if (lower.includes('concierge') && !lower.includes('desk directly')) {
+      return {
+        reply: hotelData.qa_responses?.['concierge'] || "Our concierge team can arrange theatre tickets, private museum tours, curated shopping guides, florists, and last-minute reservations at the city's most sought-after restaurants. What can we arrange for you?",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Check-in / check-out time
+    if (lower.includes('check-in') || lower.includes('check in') || lower.includes('check out') || lower.includes('checkout') || lower.includes('check-out')) {
+      if (
+        lower.includes('late check-out') ||
+        lower.includes('late checkout') ||
+        ((lower.includes('check out') || lower.includes('check-out') || lower.includes('checkout')) && !lower.includes('check in') && !lower.includes('check-in'))
+      ) {
+        return {
+          reply: hotelData.qa_responses?.['checkout'] || "Standard check-out is at noon. Late check-out until 4 PM is available for $95, subject to availability — I can request that for your room right now if you'd like.",
+          intent: 'faq',
+          conversationId
+        };
+      }
+      return {
+        reply: "Check-in begins at 3:00 PM, and check-out is by 11:00 AM (standard check-out is at noon for Grand Aurel; late check-out until 4 PM is available for $95, subject to availability).",
         intent: 'faq',
         conversationId
       };
@@ -414,11 +478,26 @@ export class AIService {
 
     // Swimming pool
     if (lower.includes('pool') || lower.includes('swimming')) {
-      const pool = hotelData.amenities.find((a) => a.id === 'pool');
       return {
-        reply: pool
-          ? pool.description
-          : 'Yes, we have a heated rooftop infinity pool offering panoramic ocean views, open daily from 6:00 AM to 10:00 PM.',
+        reply: "The heated rooftop infinity pool is open from 7 AM to 10 PM for guests. Cabanas may be reserved in advance. Poolside service for drinks and light bites runs 10 AM to 8 PM.",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Gym / Fitness centre
+    if (lower.includes('gym') || lower.includes('fitness') || lower.includes('technogym') || lower.includes('peloton')) {
+      return {
+        reply: hotelData.qa_responses?.['gym'] || "The fitness centre is open 24 hours with keycard access. It features Technogym equipment, a cycling studio, and Peloton bikes. Personal training sessions can be arranged at €120/hour.",
+        intent: 'faq',
+        conversationId
+      };
+    }
+
+    // Wi-Fi / Internet
+    if (lower.includes('wifi') || lower.includes('wi-fi') || lower.includes('internet')) {
+      return {
+        reply: hotelData.qa_responses?.['wifi'] || "Complimentary high-speed Wi-Fi is available throughout the property. Connect to 'Grand Aurel Guest' — no password required. Premium bandwidth for video calls and streaming is available at €18/day.",
         intent: 'faq',
         conversationId
       };
@@ -443,7 +522,7 @@ export class AIService {
     // Breakfast
     if (lower.includes('breakfast') && !lower.includes('lunch') && !lower.includes('luner') && !lower.includes('dinner')) {
       return {
-        reply: hotelData.hotel.breakfast_policy,
+        reply: hotelData.qa_responses?.['breakfast'] || "Our breakfast buffet is served in the Grand Salon from 7 to 11 AM (weekends until 11:30 AM). Continental, cooked-to-order, and plant-based options are available. Room service breakfast begins at 6 AM.",
         intent: 'faq',
         conversationId
       };
@@ -459,7 +538,7 @@ export class AIService {
       lower.includes('all inclusive')
     ) {
       return {
-        reply: "Lunch and dinner are not included in the standard room rates or room budget. Only breakfast is included for select room types (complimentary for Executive Harbor Suites and Two-Bedroom Family Villas, or $25 per adult for Deluxe rooms). Guests can enjoy lunch and dinner à la carte at our three on-site restaurants: 'Azure Bay' (coastal fine dining), 'The Tide Bar & Lounge', and 'Seaside Cafe', or order via 24-hour room service.",
+        reply: "Lunch and dinner are not included in the standard room rates or room budget. Guests can enjoy lunch and dinner à la carte at our dining venues or via 24-hour room service (breakfast 6–11 AM, lunch 12–3 PM, dinner 6 PM–midnight).",
         intent: 'faq',
         conversationId
       };
@@ -479,18 +558,6 @@ export class AIService {
       const parking = hotelData.amenities.find((a) => a.id === 'parking');
       return {
         reply: parking ? parking.description : 'Valet parking is available for $35 per overnight stay with complimentary EV charging.',
-        intent: 'faq',
-        conversationId
-      };
-    }
-
-    // Wi-Fi / Internet
-    if (lower.includes('wifi') || lower.includes('wi-fi') || lower.includes('internet')) {
-      const wifi = hotelData.amenities.find((a) => a.id === 'wifi');
-      return {
-        reply: wifi
-          ? wifi.description
-          : "Complimentary high-speed fiber Wi-Fi is available across the resort. Connect to 'GrandAzure-Guest' with no password required.",
         intent: 'faq',
         conversationId
       };
@@ -517,7 +584,7 @@ export class AIService {
 
     // Unanswerable / Out of scope questions (weather, flights, external password, outside attractions)
     return {
-      reply: "I apologize, but I do not have information regarding that in our hotel directory. Please feel free to contact our front desk at +1 (831) 555-0199 or email concierge@grandazureresort.com, and our team will gladly assist you.",
+      reply: hotelData.qa_responses?.['default'] || "I do not have that information in our directory, but I'd be happy to assist you with that. Please allow me a moment to connect you with the right information, or feel free to contact our front desk or call our concierge desk directly at ext. 0.",
       intent: 'fallback',
       conversationId
     };
